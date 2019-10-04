@@ -1,0 +1,32 @@
+=={{header|Python}}==
+<lang Python>
+infile = open('infile.dat', 'rb')
+outfile = open('outfile.dat', 'wb')
+
+while True:
+    onerecord = infile.read(80)
+    if len(onerecord) < 80:
+        break
+    onerecordreversed = bytes(reversed(onerecord))
+    outfile.write(onerecordreversed)
+
+infile.close()
+outfile.close()
+</lang>
+
+Output:
+<pre>
+ dd if=outfile.dat cbs=80 conv=unblock
+ 8.........7.........6.........5.........4.........3.........2.........1...1 eniL
+ 2 eniL
+ 3 eniL
+ 4 eniL
+ 
+ 6 eniL
+ 7 eniL
+ ............................................................8 enil detnednI
+ NIGRAM TR                                                                 9 eniL
+ 1+1 records in
+ 1+1 records out
+</pre>
+
